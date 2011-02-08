@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache
+END
+Driver.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Driver.php
+END
+Xcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Xcache.php
+END
+Array.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Array.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Exception.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Interface.php
+END
+Memcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Memcache.php
+END
+Apc.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Apc.php
+END
+Db.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cache/Db.php
+END

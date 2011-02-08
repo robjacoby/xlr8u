@@ -1,0 +1,39 @@
+Model_Session:
+  Session_1:
+    sessiontype: Running
+    length: 45 minutes
+    datetime: "2011-03-02 16:30:00"
+    User: User_3
+  Session_2:
+    sessiontype: Boxing
+    length: 45 minutes
+    datetime: "2011-03-01 15:30:00"
+    User: User_3
+  Session_3:
+    sessiontype: Running
+    length: 45 minutes
+    datetime: "2011-03-03 17:30:00"
+    User: User_2
+
+Model_User:
+  User_1:
+    name: Rob Brehaut
+    email: rob@xlr8yourfitness.com.au
+    phone: '0421029021'
+    username: admin
+    password: 1749d52c88b0faeb8e214f239fec780f2a61fefb
+    saltstring: gWycXF00W0ttx79cjXBc5hnyXK2BrVP9UJt7Gn05
+  User_2:
+    name: Rob Jacoby
+    email: rob.jacoby@datalect.com.au
+    phone: '0410010020'
+    username: rjacoby
+    password: d68283df8ff398ef56755d7d7781adfc6c168a78
+    saltstring: ZaZ7IBNmzRoASgNMYIKmyVC4fKKxsY2qcB1m3laC
+  User_3:
+    name: Trish Jacoby
+    email: trishbats@hotmail.com
+    phone: '0424009909'
+    username: tjacoby
+    password: 353f618533dcacde6ccd60ed709f9254abc0be4e
+    saltstring: UpD0m8nR8AmVf6vm8aAXb9wzRWxU66yBNgcJX9Cy

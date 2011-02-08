@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Query/Filter
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Query/Filter/Interface.php
+END
+Chain.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Query/Filter/Chain.php
+END

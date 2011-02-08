@@ -1,0 +1,102 @@
+options:
+  type: INNODB
+  collate: utf8_general_ci
+  charset: utf8
+
+User:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name: string(300)
+    email: string(300)
+    phone: string(10)
+    address: string(300)
+    username: string(30)
+    password: string(40)
+    saltstring: string()
+  relations:
+    Sessions:
+      class: Session
+      local: id
+      foreign: userid
+      type: many
+    Groups:
+      class: Usergroup
+      local: id
+      foreign: userid
+      type: many
+
+Usergroup:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    userid: integer
+  relations:
+    Users:
+      class: User
+      local: userid
+      foreign: id
+      type: many
+
+Invoice:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    generationdate: timestamp
+    amount: float
+    duedate: timestamp
+    paymentdate: timestamp
+  relations:
+    Session:
+      foreign: invoiceid
+      local: id
+
+Result:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    sessionid: integer
+    description: string()
+    value: string()
+  relations:
+    Session:
+      foreign: id
+      local: sessionid
+
+Session:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    sessiontype: string(10)
+    description: string()
+    location: string()
+    datetime: timestamp
+    length: string(100)
+    userid: integer
+    groupid: integer
+    invoiceid: integer
+  relations:
+    User:
+      foreign: id
+      local: userid
+    Usergroup:
+      foreign: id
+      local: groupid
+    Invoice:
+      foreign: id
+      local: invoiceid
+    Results:
+      class: Result
+      local: id
+      foreign: sessionid
+      type: many

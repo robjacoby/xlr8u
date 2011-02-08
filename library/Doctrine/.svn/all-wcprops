@@ -1,0 +1,293 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine
+END
+Hydrator.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Hydrator.php
+END
+Parser.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Parser.php
+END
+Overloadable.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Overloadable.php
+END
+Configurable.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Configurable.php
+END
+Formatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Formatter.php
+END
+Cli.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Cli.php
+END
+AuditLog.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/AuditLog.php
+END
+RawSql.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/RawSql.php
+END
+Null.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Null.php
+END
+Manager.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Manager.php
+END
+Import.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Import.php
+END
+Template.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Template.php
+END
+DataDict.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/DataDict.php
+END
+Relation.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Relation.php
+END
+Util.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Util.php
+END
+Export.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Export.php
+END
+Inflector.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Inflector.php
+END
+Validator.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Validator.php
+END
+EventListener.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/EventListener.php
+END
+Core.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Core.php
+END
+Migration.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Migration.php
+END
+Collection.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Collection.php
+END
+Column.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Column.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Exception.php
+END
+Pager.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Pager.php
+END
+Expression.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Expression.php
+END
+Connection.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Connection.php
+END
+Tree.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Tree.php
+END
+Hook.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Hook.php
+END
+Access.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Access.php
+END
+Task.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task.php
+END
+Locator.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Locator.php
+END
+Query.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Query.php
+END
+Search.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Search.php
+END
+Lib.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Lib.php
+END
+Sequence.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Sequence.php
+END
+Data.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Data.php
+END
+Compiler.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Compiler.php
+END
+View.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/View.php
+END
+Record.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Record.php
+END
+I18n.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/I18n.php
+END
+File.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/File.php
+END
+Event.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Event.php
+END
+IntegrityMapper.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/IntegrityMapper.php
+END
+Node.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Node.php
+END
+Transaction.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Transaction.php
+END
+Builder.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Builder.php
+END
+Table.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Table.php
+END

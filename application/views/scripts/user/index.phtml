@@ -1,0 +1,16 @@
+<?php $user = $this->user; ?>
+<h1>User Control Panel</h1>
+<ul>
+    <li><?=$user->name?>
+        <ul>
+            <?php foreach($user->Sessions as $session): ?>
+            <li><?=$session->sessiontype;?> for <?=$session->length;?> on <?=$session->datetime;?></li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+</ul>
+<?php if($this->message): ?>
+<h2><?= $this->message; ?></h2>
+<?php endif; ?>
+<a href="/user/change-password">Change Password</a>
+<a href="/login/logout">Logout</a>

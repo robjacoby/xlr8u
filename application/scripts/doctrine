@@ -1,0 +1,4 @@
+#!/usr/bin/env /opt/local/bin/php
+<?php
+chdir(dirname(__FILE__));
+include('doctrine.php');

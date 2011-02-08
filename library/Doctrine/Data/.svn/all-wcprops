@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Data
+END
+Import.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Data/Import.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Data/Exception.php
+END
+Export.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Data/Export.php
+END

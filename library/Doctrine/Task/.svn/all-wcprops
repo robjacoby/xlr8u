@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task
+END
+GenerateMigrationsModels.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateMigrationsModels.php
+END
+RebuildDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/RebuildDb.php
+END
+GenerateMigrationsDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateMigrationsDb.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/Exception.php
+END
+CreateTables.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/CreateTables.php
+END
+DumpData.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/DumpData.php
+END
+GenerateModelsDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateModelsDb.php
+END
+GenerateMigration.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateMigration.php
+END
+CreateDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/CreateDb.php
+END
+LoadData.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/LoadData.php
+END
+DropDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/DropDb.php
+END
+GenerateSql.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateSql.php
+END
+BuildAllReload.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/BuildAllReload.php
+END
+GenerateMigrationsDiff.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateMigrationsDiff.php
+END
+Dql.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/Dql.php
+END
+GenerateModelsYaml.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateModelsYaml.php
+END
+GenerateYamlModels.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateYamlModels.php
+END
+GenerateYamlDb.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/GenerateYamlDb.php
+END
+Compile.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/Compile.php
+END
+BuildAllLoad.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/BuildAllLoad.php
+END
+BuildAll.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/BuildAll.php
+END
+Migrate.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Task/Migrate.php
+END

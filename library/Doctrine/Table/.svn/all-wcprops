@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Table
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Table/Exception.php
+END
+Repository.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Table/Repository.php
+END

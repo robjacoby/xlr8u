@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Node/MaterializedPath
+END
+PostOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Node/MaterializedPath/PostOrderIterator.php
+END
+PreOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Node/MaterializedPath/PreOrderIterator.php
+END
+LevelOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Node/MaterializedPath/LevelOrderIterator.php
+END

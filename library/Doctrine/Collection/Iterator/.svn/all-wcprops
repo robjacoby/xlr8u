@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Collection/Iterator
+END
+Expandable.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Collection/Iterator/Expandable.php
+END
+Offset.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Collection/Iterator/Offset.php
+END
+Normal.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/doctrine/doctrine1.git/!svn/ver/97/lib/Doctrine/Collection/Iterator/Normal.php
+END

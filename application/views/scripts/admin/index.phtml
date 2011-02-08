@@ -1,0 +1,29 @@
+<?php $user = $this->user; ?>
+<h1>Admin Control Panel</h1>
+<ul>
+    <li><?=$user->name?>
+        <ul>
+            <?php foreach($this->sessions as $session): ?>
+            <?php
+            $zendDate = new Zend_Date($session->datetime);
+            $date = $zendDate->get(Zend_Date::DATE_FULL);
+            $time = $zendDate->get(Zend_Date::TIME_SHORT);
+            ?>
+            <li>
+            <?=$session->sessiontype;?> for <?=$session->length;?> on <?=$date;?> at <?=$time;?> with <?=$session->User->name?>
+            <?php if ($session->invoiceid === null): ?>
+                <a href="/admin/generate-invoice?id=<?=$session->id?>">Generate Invoice</a>
+            <?php else: ?>
+                <a href="/admin/view-invoice?id=<?=$session->id?>">View Invoice</a>
+            <?php endif; ?>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+</ul>
+<?php if($this->message): ?>
+<h2><?= $this->message; ?></h2>
+<?php endif; ?>
+
+<a href="/admin/change-password">Change Password</a>
+<a href="/login/logout">Logout</a>
