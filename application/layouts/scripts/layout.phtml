@@ -1,9 +1,15 @@
 <?=$this->doctype() . PHP_EOL; ?>
 <html>
     <head>
-
+        <?php $this->dojo()->enable();
+        if ($this->dojo()->isEnabled()){
+            echo $this->dojo();
+        }
+        ?>
+        <?=$this->headLink();?>
+        <?=$this->headScript();?>
     </head>
-    <body>
+    <body class="tundra">
         <?=$this->layout()->content . PHP_EOL; ?>
     </body>
 </html>

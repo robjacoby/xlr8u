@@ -1,0 +1,192 @@
+<?php $this->headLink()->appendStylesheet('/css/calendar.css'); ?>
+<div id="calendarWrapper">
+    <!-- <div id="calendarHeader">
+        <div id="scrollableWrapper">
+            <ul id="monthCarousel" class="jcarousel-skin-custom">
+            <?php foreach ($this->calHeader as $arr) : ?>
+                <li id="<?php echo $arr['id']; ?>">
+                    <a href="<?php echo $this->url($arr['url']); ?>"><?php echo $arr['text']; ?></a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+    </div> -->
+    <div id="calendarBody">
+        <table id="calendarTable" border="0" cellpadding="0" cellspacing="0">
+            <tr class="weekdays">
+                <?php foreach($this->calendar->getDayNames() as $dayName) : ?>
+                <td class="<?php echo $dayName['class']; ?>"><?=$dayName['name'];?></td>
+                <?php endforeach;?>
+            </tr>
+            <?php foreach ($this->calendar->weekList as $weekNum => $weekArr) : ?>
+            <tr class="days">
+            <?php foreach ($weekArr as $dayArr) : ?>
+                <?php $class = ""; ?>
+                <?php if ($dayArr['day']->isToday()) $class .= "today"; ?>
+                <?php if ($dayArr['day']->get(Zend_Date::WEEKDAY_DIGIT) == 6) $class .= " last"; ?>
+                <?php if ($dayArr['day']->get(Zend_Date::MONTH) != $this->calendar->get(Zend_Date::MONTH)) {
+                          $class .= ' nonmonth';
+                      }
+                ?>
+                <td <?php if ($class != "") echo "class=\"$class\""; ?>>
+                <?php if (isset($dayArr['day'])) : ?>
+                    <span class="dayNum"><?php echo $dayArr['day']; ?></span>
+                <?php endif; ?>
+                <?php
+                    $maxEvents = 4;
+                    // Grab info for day
+
+                    $events = null;
+                    if (!empty($dayArr['events'])) {
+                        foreach($dayArr['events'] as $dayEvent){
+                            $events[] = $this->calendar->getEvent($dayEvent['id']);
+                        }
+                        
+                        #unset($dayArr['events'][key($dayArr['events'])]);
+                    }
+
+                    #if (empty($dayInfo['events'])) unset($dayArr);
+                ?>
+                <?php if ($events) : ?>
+                    <?php foreach($events as $event): ?>
+                    <span class="event">
+                        <?php if ($event->title == 'PT Session'): ?>
+                        <a href="/user/session/id/<?=$event->id;?>">
+                        <?php else: ?>
+                        <a href="/user/diary/id/<?=$event->id;?>">
+                        <?php endif; ?>
+                            <?=$event->title;?>
+                        </a>
+                    </span>
+                    <?php endforeach; ?>
+                <?php endif;?>
+                </td>
+                <?php endforeach; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <!-- <div class="mv-event-container" id="mvEventContainer">
+        <?php
+        $height = 0;
+        foreach($this->calendar->weekList as $weekNum => &$week) : ?>
+        <div class="month-row" style="top:<?=$height++*20;?>%;height:20%">
+            <table cellpadding="0" cellspacing="0" class="st-bg-table">
+                <tbody>
+                    <tr>
+                        <?php foreach($week as &$weekData) :
+                            $extraClasses = '';
+                            $digit = $weekData['day']->get(Zend_Date::WEEKDAY_DIGIT);
+
+                            if ($digit == 0) {
+                                $extraClasses.= ' st-bg-fc';
+                            } else if ($digit == 6) {
+                                $extraClasses = ' st-bg-lc';
+                            }
+
+                            if ($weekData['day']->isToday()) {
+                                $extraClasses.= ' st-bg-today';
+                            }
+
+                            if ($weekNum == 5) {
+                                $extraClasses.= ' st-bg-bc';
+                            }
+                        ?>
+                        <td class="st-bg<?=$extraClasses;?>">&nbsp;</td>
+                        <?php endforeach;?>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellpadding="0" cellspacing="0" class="st-grid">
+                <tbody>
+                    <tr>
+                        <?php
+                        // Day digits for calendar
+                        foreach($week as &$weekData) :
+                            $extraClasses = '';
+                            if ($weekData['day']->get(Zend_Date::MONTH) != $this->calendar->get(Zend_Date::MONTH)) {
+                                $extraClasses.= ' st-dtitle-nonmonth';
+                            }
+
+                            if ($weekData['day']->get(Zend_Date::WEEKDAY_DIGIT) == SZend_Calendar::SATURDAY) {
+                                $extraClasses.= ' st-dtitle-endweek';
+                            }
+                        ?>
+                        <td class="st-dtitle <?=$extraClasses;?>">
+                            <span><?=($weekData['day']->get(Zend_Date::DAY_SHORT) == 1)?$weekData['day']->get(Zend_Date::MONTH_NAME_SHORT):'';?> <?=$weekData['day'];?></span>
+                        </td>
+                        <?php endforeach;?>
+                    </tr>
+                    <?php while(count($week)) :?>
+                    <tr>
+                        <?php
+                        $maxEvents = 4;
+                        $colSpan = 1;
+                        $rowSpan = 1;
+                        for($dayNum = 0; $dayNum < 7; $dayNum ++) :
+                            // Grab info for day
+                            $dayArr = &$week[$dayNum];
+
+                            // Skip any spanned cells
+                            if ($colSpan-- > 1)	continue;
+                            $rowSpan = 1;
+
+                            $event = null;
+                            if (!empty($dayArr['events'])) {
+                                $day = $dayArr['day'];
+                                $info = $dayArr['events'][key($dayArr['events'])];
+                                $event = $this->calendar->getEvent($info['id']);
+
+                                $daysLeft = (7 - $dayNum);
+
+                                // Calculate colspan
+                                $colSpan = $info['days'];
+                                if ($info['days'] > $daysLeft) {
+                                    $colSpan = $daysLeft;
+                                }
+
+                                unset($week[$dayNum]['events'][key($week[$dayNum]['events'])]);
+                            }
+
+                            if (empty($dayArr['events'])) unset($week[$dayNum]);
+                        ?>
+                        <td class="st-c"
+                            <?=($rowSpan > 1)?'rowspan="'.$rowSpan.'"' : '';?>
+                            <?=($colSpan > 1)?'colspan="'.$colSpan.'"' : '';?>>
+
+                            <?php if ($event) :?>
+                            <div class="te rb-n" style="<?=($event->bg_color)?'background-color:'.$event->bg_color.';':''?><?=($event->text_color)?'color:'.$event->text_color.';':''?>">
+                                <?php if ($status == 'ends') : ?>
+                                <span class="te-t te-a">&lt;</span>
+                                <?php endif;?>
+                                <span class="te-t">
+                                    <?php
+                                    $hour = (int)substr($event->start_time, 0, 2);
+                                    if ($hour >= 12) {
+                                        if ($hour > 12) {
+                                            $hour-= 12;
+                                        }
+                                        $hour.= 'p';
+                                    }
+                                    ?>
+                                    <?=($hour) ? $hour . '&nbsp;': '';?></span>
+                                <span class="te-s">
+                                    <a style="<?=($event->text_color)?'color:'.$event->text_color.';':''?>" href="/event/view/id/<?=$event->id;?>">
+                                        <?=$this->escape($event->summary);?>
+                                    </a>
+                                </span>
+                                <?php if ($status == 'starts') : ?>
+                                <span class="te-t te-a" style="float:right;">&gt;</span>
+                                <?php endif;?>
+                            </div>
+                            <?php endif;?>
+                        </td>
+                        <?php endfor;?>
+                    </tr>
+                    <?php endwhile;?>
+                </tbody>
+            </table>
+        </div>
+        <?php endforeach; ?>
+    </div> -->
+</div>

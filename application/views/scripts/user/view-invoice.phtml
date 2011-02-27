@@ -1,0 +1,58 @@
+<?php
+$sessionDate = new Zend_Date($this->session->datetime);
+$generationDate = new Zend_Date($this->invoice->generationdate);
+$dueDate = new Zend_Date($this->invoice->duedate);
+?>
+<h1>XLR8 U Fitness</h1>
+<h2>Rob's Address and Phone Here</h2>
+
+<label for="generatedDate">Date:</label>
+<span id="generatedDate"><?=$generationDate->get(Zend_Date::DATE_LONG);?></span>
+<label for="invoiceId">Invoice#:</label>
+<span id="invoiceId"><?=$this->invoice->id;?></span>
+<label for="dueDate">Due Date:</label>
+<span id="dueDate"><?=$dueDate->get(Zend_Date::DATE_LONG);?></span>
+
+<hr />
+
+<label for="user">Bill To:</label>
+<div id="user">
+    <ul>
+        <li><?=$this->user->name;?></li>
+        <li><?=$this->user->address;?></li>
+        <li><?=$this->user->phone;?></li>
+        <li><?=$this->user->email;?></li>
+    </ul>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Session ID</th>
+            <th>Session Type</th>
+            <th>Date and Time</th>
+            <th>Session Length</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?=$this->session->id;?></td>
+            <td><?=$this->session->sessiontype;?></td>
+            <td><?=$sessionDate->get(Zend_Date::DATETIME_SHORT);?></td>
+            <td><?=$this->session->length;?></td>
+            <td><?=$this->session->description;?></td>
+            <td><?=$this->session->location;?></td>
+            <td>$<?=$this->invoice->amount;?></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">&nbsp;</td>
+            <td>Total:</td>
+            <td>$<?=$this->invoice->amount;?></td>
+        </tr>
+    </tfoot>
+</table>

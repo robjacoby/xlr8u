@@ -1,0 +1,9 @@
+<?php $this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'); ?>
+<?php $this->headScript()->captureStart(); ?>
+$(document).ready(function() {
+    $('#cancel').click(function(){
+        window.location.href = '/user/';
+    });
+});
+<?php $this->headScript()->captureEnd(); ?>
+<?php echo $this->form; ?>

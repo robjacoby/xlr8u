@@ -10,6 +10,7 @@ class AdminController extends Zend_Controller_Action
     {
         $this->view->user = Zend_Auth::getInstance()->getIdentity();
         $this->view->sessions = Model_Session::findAll();
+        $this->view->users = Model_User::findAll();
     }
 
     public function changePasswordAction()
@@ -76,6 +77,56 @@ class AdminController extends Zend_Controller_Action
         } else {
             $this->_redirect('/admin/');
         }
+    }
+
+    public function sessionAction()
+    {
+        if ($this->getRequest()->isGet()) {
+            $sessionid = $this->_getParam('id');
+            $session = Model_Session::findOneById($sessionid);
+            $this->view->session = $session;
+
+            $config = new Zend_Config_Ini(APPLICATION_PATH
+                                        . '/forms/session.ini', 'result');
+            $this->view->form = new Zend_Form($config->session);
+            $this->view->form->sessionid->setValue($sessionid);
+
+        } else if ($this->getRequest()->isPost()) {
+            $sessionid = $this->_getParam('sessionid');
+            
+            $result = new Model_Result();
+            $result->sessionid = $sessionid;
+            $result->description = $this->_getParam('description');
+            $result->value = $this->_getParam('value');
+            $result->save();
+            
+            $session = Model_Session::findOneById($sessionid);
+            
+            $this->view->session = $session;
+            $config = new Zend_Config_Ini(APPLICATION_PATH
+                                        . '/forms/session.ini', 'result');
+            $this->view->form = new Zend_Form($config->session);
+            $this->view->form->sessionid->setValue($sessionid);
+            
+        } else {
+            $this->_redirect('/admin/');
+        }
+    }
+
+    public function generateDiaryAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $userid = $this->_getParam('id');
+            $user = Model_User::findById($userid);
+            $diary = $user->Diaries;
+            for($day = 0; $day < 7; $day++){
+                $now = Zend_Date::now();
+                $date = $now->addDay($day);
+                $diary[]->dateField = $date->toString('yyyy-MM-dd');
+            }
+            $user->save();
+        }
+        exit;
     }
 }
 ?>

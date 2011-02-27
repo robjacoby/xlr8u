@@ -15,6 +15,8 @@
  * @property string $saltstring
  * @property Doctrine_Collection $Sessions
  * @property Doctrine_Collection $Groups
+ * @property Doctrine_Collection $FitResults
+ * @property Doctrine_Collection $Diaries
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -73,6 +75,14 @@ abstract class Model_Base_User extends Doctrine_Record
              'foreign' => 'userid'));
 
         $this->hasMany('Model_Usergroup as Groups', array(
+             'local' => 'id',
+             'foreign' => 'userid'));
+
+        $this->hasMany('Model_Fitness as FitResults', array(
+             'local' => 'id',
+             'foreign' => 'userid'));
+
+        $this->hasMany('Model_Diary as Diaries', array(
              'local' => 'id',
              'foreign' => 'userid'));
     }

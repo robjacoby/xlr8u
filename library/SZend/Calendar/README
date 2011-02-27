@@ -1,0 +1,122 @@
+ZEND CALENDAR PROPOSAL README
+Kyle Spraggs <theman@spiffyjr.me>
+
+TABLE OF CONTENTS
+1 - INTRODUCTION
+2 - DEPENDENCIES
+3 - SETUP
+4 - RENDERERS
+5 - EVENTS
+6 - USE CASES (EXAMPLES)
+  6.1 - SIMPLE CALENDAR
+  6.2 - ADDING EVENTS USING AN ARRAY
+  6.3 - ADDING EVENTS USING ZEND_DB_TABLE
+7 - SAMPLE CALENDAR.PHTML FOR ZENDVIEW RENDERER
+
+1. INTRODUCTION
+
+This document aims to provide base documentation for my proposal of a calendar
+for the Zend Framework (http://framework.zend.com). The full proposal can be found at
+http://framework.zend.com/wiki/display/ZFPROP/Zend_Calendar+-+Kyle+Spraggs. The package
+name is currently SZend_Calendar for SpiffyZend_Calendar (henceforth SCal).
+
+2 - DEPENDENCIES
+ * Zend_Date
+ * Zend_Exception
+ * Zend_Locale
+ * Zend_View
+
+3 - SETUP
+
+The only requirement of SCal is that you have a Zend Framework project with
+the required dependencies.
+
+The current prototype source code can be found at http://github.com/SpiffyJr/SZend. Once
+you have the source downloaded you need to place the SZend folder in a path accessible
+with your include_path. The Zend Autoloader should take care of the rest as long as you
+add the SZend namespace to your autoloader.
+
+For example, 
+
+// application.ini
+autoloaderNamespaces[] = "SZend_"
+
+4 - RENDERERS
+
+SCal provides support for rendering from various sources. The default renderer is ZendView
+and is included as SZend_Calendar_Render_ZendView. To create new renderers simply extend
+SZend_Calendar_Render_Abstract and implement SZend_Calendar_Render_Interface.
+
+5 - EVENTS
+
+SCal provides support for adding events which can then be rendered using the renderers
+available. Like renderers, events can have different sources and you can use any number
+of event sources to populate SCal. SCal comes with event sources for arrays, Zend_Db_Table,
+and Doctrine ORM. To create new events simply extend SZend_Calendar_Event_Abstract and
+implement SZend_Calendar_Event_Interface.
+
+6 - USE CASES (EXAMPLES)
+
+The following are a few examples of how to use SCal. This is not an exhaustive list and will
+be populated with more information in the future.
+
+6.1 - SIMPLE CALENDAR
+
+This example creates a basic calendar with no events and uses the default renderer of ZendView.
+See section 7 for a sample calendar.phtml file.
+
+<?php
+$calendar = new SZend_Calendar();
+echo $calendar; 
+
+6.2 - ADDING EVENTS USING AN ARRAY
+
+This example creates a calendar with events populated from an array. createEvent() is called using
+a source of 'array'. createEvent() takes three parameters. The first is the event source, second is
+any data, and third is options for the event. In this case, there are two events being added - 
+Event #1, and Event #2. Event #1 is added using the default date of the calendar (current month, year
+and a day of 5). Event #2 is added similar to Event #1 with the exception of the day being manually set
+to 1.
+
+<?php
+$calendar = new SZend_Calendar() 
+$calendar->createEvent( 
+    'array', 
+    array( 
+        array( 
+            'title' => 'Event #1', 
+            'eventDate' => array('day' => 1)) 
+        array('title' => 'Event #2') 
+    ), 
+    array( 
+            'day' => 5 
+    )); 
+$calendar->createEvent('array', array(array('title' =>; 'Event #3')));
+
+6.3 - ADDING EVENTS USING ZEND_DB_TABLE
+
+This example creates a calendar with events being populated from Zend_Db_Table. The event object is
+created from SZend_Calendar_Event_Source_Table.
+
+<?php
+$calendar = new SZend_Calendar(); 
+$calendar->setTable(new My_DbTable_Event()); 
+ 
+// New event using Zend_Db_Table 
+$event = new SZend_Calendar_Event_Source_Table(); 
+ 
+// Only shows ids greater than 10 
+$event->select()->where('id >= ?', 10); 
+ 
+// Set a default date in case the table doesn't have one 
+$event->setDate(array('day' => 10)); 
+ 
+// Set the dateField and dateFormat of the date field from the database. 
+$event->setParams( 
+    array('dateField' => 'date', 'dateFormat' => 'YYYY-MM-DD')); 
+ 
+// Create the event 
+$calendar->createEvent($events); 
+echo $calendar; 
+
+7 - SAMPLE CALENDAR.PHTML FOR ZENDVIEW RENDERER

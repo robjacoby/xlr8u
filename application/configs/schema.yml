@@ -27,6 +27,16 @@ User:
       local: id
       foreign: userid
       type: many
+    FitResults:
+      class: Fitness
+      local: id
+      foreign: userid
+      type: many
+    Diaries:
+      class: Diary
+      local: id
+      foreign: userid
+      type: many
 
 Usergroup:
   columns:
@@ -100,3 +110,42 @@ Session:
       local: id
       foreign: sessionid
       type: many
+
+Fitness:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    userid: integer
+    beep: string()
+    toetaps: string()
+    pushups: string()
+    90hang: string()
+    plank: string()
+    3minstep: string()
+    12minrun: string()
+    waistcm: string()
+    datetime: timestamp
+  relations:
+    User:
+      foreign: id
+      local: userid
+
+Diary:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    userid: integer
+    dateField: date
+    breakfast: string()
+    lunch: string()
+    dinner: string()
+    snacks: string()
+    exercise: string()
+  relations:
+    User:
+      foreign: id
+      local: userid

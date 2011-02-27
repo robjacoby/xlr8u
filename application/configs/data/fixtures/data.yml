@@ -1,19 +1,24 @@
 Model_Session:
   Session_1:
-    sessiontype: Running
+    sessiontype: Boxing
     length: 45 minutes
-    datetime: "2011-03-02 16:30:00"
+    datetime: "2011-03-01 06:30:00"
     User: User_3
   Session_2:
     sessiontype: Boxing
     length: 45 minutes
-    datetime: "2011-03-01 15:30:00"
-    User: User_3
-  Session_3:
-    sessiontype: Running
-    length: 45 minutes
-    datetime: "2011-03-03 17:30:00"
+    datetime: "2011-03-01 06:30:00"
     User: User_2
+  Session_3:
+    sessiontype: Circuit
+    length: 45 minutes
+    datetime: "2011-03-03 06:00:00"
+    User: User_2
+  Session_4:
+    sessiontype: Circuit
+    length: 45 minutes
+    datetime: "2011-03-03 06:00:00"
+    User: User_3
 
 Model_User:
   User_1:

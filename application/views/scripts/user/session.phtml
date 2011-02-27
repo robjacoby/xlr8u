@@ -1,0 +1,9 @@
+<?php $session = $this->session; ?>
+
+<h1>Session Information</h1>
+<h3><?=$session->description; ?></h3>
+<ul>
+    <?php foreach($session->Results as $result): ?>
+    <li><?=$result->description; ?> => <?=$result->value; ?></li>
+    <?php endforeach; ?>
+</ul>

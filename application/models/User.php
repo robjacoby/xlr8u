@@ -15,6 +15,15 @@ class Model_User extends Model_Base_User
 
     const NOT_FOUND = 1;
     const WRONG_PW = 2;
+
+    public static function findById($userid) {
+        $user = Doctrine_Core::getTable('Model_User')->findOneById($userid);
+
+        if($user)
+            return $user;
+        else
+            return false;
+    }
     
     
     /**
@@ -45,6 +54,15 @@ class Model_User extends Model_Base_User
 
     public static function findAll()
     {
-        return Doctrine_Query::create()->from('Model_User u')->execute();
+        $users = Doctrine_Core::getTable('Model_User')->findAll();
+        $counter = 0;
+        foreach($users as $user){
+            if ($user->username == 'admin'){
+                $users->remove($counter);
+            }
+            $counter++;
+        }
+
+        return $users;
     }
 }
