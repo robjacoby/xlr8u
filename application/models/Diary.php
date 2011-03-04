@@ -29,6 +29,7 @@ class Model_Diary extends Model_Base_Diary
     /**
      *
      * @param Model_User $user
+     * @return Doctrine_Collection | false
      */
     public static function getEvents(Model_User $user)
     {

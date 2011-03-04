@@ -6,6 +6,10 @@
  */
 class AdminController extends Zend_Controller_Action
 {
+    public function init(){
+        $this->view->navigation()->setRole(Zend_Auth::getInstance()->getIdentity()->getRole());
+    }
+
     public function indexAction()
     {
         $this->view->user = Zend_Auth::getInstance()->getIdentity();

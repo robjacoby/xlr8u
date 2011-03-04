@@ -16,6 +16,12 @@ class Model_User extends Model_Base_User
     const NOT_FOUND = 1;
     const WRONG_PW = 2;
 
+    /**
+     *
+     * @var My_Acl_Role
+     */
+    protected $_role = My_Acl_Roles::GUEST;
+
     public static function findById($userid) {
         $user = Doctrine_Core::getTable('Model_User')->findOneById($userid);
 
@@ -42,6 +48,7 @@ class Model_User extends Model_Base_User
             $seasonedpassword = $salt->getEncryptedPassword();
             
             if($user->password == $seasonedpassword){
+                
                 return $user;
             }
             
@@ -64,5 +71,13 @@ class Model_User extends Model_Base_User
         }
 
         return $users;
+    }
+
+    public function setRole($role){
+        $this->_role = $role;
+    }
+
+    public function getRole(){
+        return $this->_role;
     }
 }

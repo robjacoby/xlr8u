@@ -80,14 +80,34 @@ class SZend_Calendar
          */
         protected $_endOfWeek = self::SATURDAY;
 
+        /**
+         *
+         * @var Zend_Date todays date
+         */
+        protected $_now;
+        protected $_focusMonthNames;
+	protected $_focusMonthDayNames;
+	protected $_focusMonthNumDays;
+	protected $_focusMonthFirstDayOfWeek;
+	protected $_focusMonthNumWeeks;
+	protected $_validDates; //months in range of now
+	protected $_nextMonth;
+	protected $_prevMonth;
+        protected $_focusDate;
+
 
         /**
 	 * Constructor
 	 * @param array $options
+         * @param string $date
 	 */
-	public function __construct(array $options = array())
+	public function __construct(array $options = array(), $date = null)
 	{
-		$this->_request = Zend_Controller_Front::getInstance()->getRequest();
+            $this->_now = Zend_Date::now();
+            
+            $this->setFocusDate($date);
+
+            $this->_request = Zend_Controller_Front::getInstance()->getRequest();
 		
 		// Generate calendar timestamp
 		if (array_key_exists('timestamp', $options)) {
@@ -278,6 +298,110 @@ class SZend_Calendar
 	}
 	
 	/**
+	 * Sets the month in focus, i.e. the month being displayed in the calendar
+	 *
+	 * @param String $date
+	 */
+	public function setFocusDate($date = null)
+	{
+		//
+		$this->_focusDate = new Zend_Date($date, "M yy");
+			
+		//date params
+		$this->_initServiceDateParams($this->_focusDate);
+	}
+        
+        /**
+	 * Sets up the Calendar Service's params
+	 * @param Zend_Date $date
+	 */
+	protected function _initServiceDateParams(Zend_Date $date)
+	{
+		$this->_focusMonthNames = Zend_Locale::getTranslationList('Month'); //locale month list
+		$this->_focusMonthDayNames = Zend_Locale::getTranslationList('Day'); //locale day list
+		$this->setValidDates();
+		$this->_focusMonthNumDays = $date->get(Zend_Date::MONTH_DAYS);
+		$this->_setNextMonth($date);
+		$this->_setPrevMonth($date);
+		$this->_focusMonthFirstDayOfWeek = $date->get(Zend_Date::WEEKDAY_DIGIT);
+		$this->_focusMonthNumWeeks = ceil(($this->getFocusMonthFirstDayOfWeek() + $this->getFocusMonthNumDays()) / 7);
+	}
+        
+        /**
+	 * Sets the next month (after the focus date)
+	 * @param Zend_Date $date
+	 */
+	protected function _setNextMonth(Zend_Date $date)
+	{
+		$focusDateClone = clone $date;
+		$this->_nextMonth = $focusDateClone->addMonth(1);
+	}
+
+	/**
+	 * Sets the prev month (before the focus date)
+	 * @param Zend_Date $date
+	 */
+	protected function _setPrevMonth(Zend_Date $date)
+	{
+		$focusDateClone = clone $date;
+		$this->_prevMonth = $focusDateClone->subMonth(1);
+	}
+
+        /**
+	 * Sets an aarray of months in range of the month we're physically in (i.e. NOW)
+	 * @param int $startOffset
+	 * @param int $endOffset
+	 */
+	public function setValidDates($startOffset = -11, $endOffset = 11)
+	{
+		$tmp = clone $this->_now;
+		$startMonth = $tmp->subMonth(abs($startOffset));
+
+		$this->_validDates = array();
+		array_push($this->_validDates, $startMonth);
+
+		$tmp = clone $startMonth;
+		for ($i = 0; $i < (abs($startOffset) + abs($endOffset)); $i++) {
+			$nextMonth = $tmp->addMonth(1);
+			array_push($this->_validDates, $nextMonth);
+			$tmp = clone $nextMonth;
+		}
+		unset($tmp);
+	}
+
+        /**
+	 * @param String $controller
+	 * @param String $action
+	 * @return Array $calHeader
+	 */
+	public function getCalendarHeaderDataArray($controller=null,$action=null)
+	{
+		$calHeader = array();
+		$focusDate = $this->getFocusDate()->get("MMM yyyy");
+		foreach ($this->getValidDates() as $date) {
+			$arr = array();
+			$arr['id'] = ($date->get('MMM yyyy') == $focusDate) ? 'selected-month' : $date->get('MMMyyyy');
+			if (null == $controller && null !== $action) {
+				$arr['url'] = array(
+					'controller' => $controller,
+					'action' => $action,
+			        'month' => $date->get('M'),
+			        'year' => $date->get('yyyy')
+				);
+			} else {
+				$arr['url'] = array(
+			        'month' => $date->get('M'),
+			        'year' => $date->get('yyyy')
+				);
+			}
+
+			$arr['text'] = $date->get('MMM yyyy');
+			array_push($calHeader, $arr);
+		}
+		return $calHeader;
+	}
+
+        /**
 	 * Populates calendar day names from translation list and caches them.
 	 *
 	 * @param array $format
@@ -619,5 +743,85 @@ class SZend_Calendar
 		}
 		return $date;
 	
+	}
+
+        /**
+	 * @return Zend_Date
+	 */
+	public function getNow()
+	{
+		return $this->_now;
+	}
+
+	/**
+	 * @return Zend_Date
+	 */
+	public function getFocusDate()
+	{
+		return $this->_focusDate;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getFocusMonthNames()
+	{
+		return $this->_focusMonthNames;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getFocusMonthDayNames()
+	{
+		return $this->_focusMonthDayNames;
+	}
+
+	/**
+	 * @return Array
+	 */
+	public function getValidDates()
+	{
+		return $this->_validDates;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getFocusMonthNumDays()
+	{
+		return $this->_focusMonthNumDays;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getFocusMonthFirstDayOfWeek()
+	{
+		return $this->_focusMonthFirstDayOfWeek;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getFocusMonthNumWeeks()
+	{
+		return $this->_focusMonthNumWeeks;
+	}
+
+	/**
+	 * @return Zend_Date
+	 */
+	public function getNextMonth()
+	{
+		return $this->_nextMonth;
+	}
+
+	/**
+	 * @return Zend_Date
+	 */
+	public function getPrevMonth()
+	{
+		return $this->_prevMonth;
 	}
 }

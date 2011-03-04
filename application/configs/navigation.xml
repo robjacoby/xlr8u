@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <nav>
+        <home>
+            <label>Home</label>
+            <uri>/</uri>
+            <pages>
+                <about>
+                    <label>About</label>
+                    <uri>/index/about</uri>
+                </about>
+                <contact>
+                    <label>Contact</label>
+                    <uri>/index/contact</uri>
+                </contact>
+            </pages>
+        </home>
+        <user>
+            <label>User</label>
+            <uri>/user/</uri>
+            <resource>freeaccount</resource>
+            <pages>
+                <changepass>
+                    <label>Change Password</label>
+                    <uri>/user/change-password</uri>
+                </changepass>
+                <logout>
+                    <label>Logout</label>
+                    <uri>/login/logout</uri>
+                </logout>
+            </pages>
+        </user>
+        <admin>
+            <label>Admin</label>
+            <uri>/admin/</uri>
+            <resource>adminpages</resource>
+            <pages>
+                <changepass>
+                    <label>Change Password</label>
+                    <uri>/admin/change-password</uri>
+                </changepass>
+                <logout>
+                    <label>Logout</label>
+                    <uri>/login/logout</uri>
+                </logout>
+            </pages>
+        </admin>
+    </nav>
+</configdata>

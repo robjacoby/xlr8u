@@ -6,10 +6,24 @@
             echo $this->dojo();
         }
         ?>
+        <?php $this->headLink()->appendStylesheet('/css/global.css'); ?>
         <?=$this->headLink();?>
         <?=$this->headScript();?>
     </head>
     <body class="tundra">
-        <?=$this->layout()->content . PHP_EOL; ?>
+        <div id="wrapper">
+            <header>
+            <?=$this->partial('partials/header.phtml'); ?>
+            </header>
+            <nav>
+            <?= $this->navigation()->menu(); ?>
+            </nav>
+            <section id="content">
+            <?=$this->layout()->content . PHP_EOL; ?>
+            </section>
+            <footer>
+            <?=$this->partial('partials/footer.phtml'); ?>
+            </footer>
+        </div>
     </body>
 </html>

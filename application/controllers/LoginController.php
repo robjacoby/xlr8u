@@ -12,10 +12,13 @@ class LoginController extends Zend_Controller_Action {
             $result = Zend_Auth::getInstance()->authenticate($adapter);
 
             if(Zend_Auth::getInstance()->hasIdentity()){
-                if(Zend_Auth::getInstance()->getIdentity()->username == 'admin')
+                if(Zend_Auth::getInstance()->getIdentity()->username == 'admin'){
+                    Zend_Auth::getInstance()->getIdentity()->setRole(My_Acl_Roles::ADMIN);
                     $this->_redirect('/admin/');
-                else
+                } else {
+                    Zend_Auth::getInstance()->getIdentity()->setRole(My_Acl_Roles::FREE);
                     $this->_redirect('/user/');
+                }
             } else {
                 $this->view->message = implode(' ', $result->getMessages());
             }

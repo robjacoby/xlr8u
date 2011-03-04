@@ -1,7 +1,7 @@
 <?php
 $user = $this->user;
 $currentDate = new Zend_Date();
-$this->headLink()->appendStylesheet('/css/global.css');
+$this->navigation()->setRole($user->getRole());
 ?>
 <h1>User Control Panel</h1>
 <ul>
@@ -29,13 +29,17 @@ $this->headLink()->appendStylesheet('/css/global.css');
     </li>
 </ul>
 <?php
-$this->dojo()->addStyleSheetModule('dijit.themes.tundra');
+#$this->dojo()->addStyleSheetModule('dijit.themes.tundra');
 #echo $this->dojoCalendar('calendar','',array(), array('dayWidth'=>'abbr'));
-$calendar = new SZend_Calendar();
-$calendar->addEvents('doctrine',array('collection'=>$this->diaryEvents), array('dateField' => 'dateField', 'title' => 'Food &amp; Exercise Diary'));
-$calendar->addEvents('doctrine',array('collection'=>$this->sessionEvents), array('dateField' => 'datetime', 'title' => 'PT Session'));
-echo $calendar;
+
+echo $this->calendar;
 ?>
+
+<?php if($this->lastTouched): ?>
+<p>It appears that you have edited your last Food &amp; Exercise Diary entry.
+    Would you like to submit it to Rob Brehaut now?</p>
+<?=$this->form;?>
+<?php endif; ?>
 
 <?php if($this->message): ?>
 <h2><?= $this->message; ?></h2>
