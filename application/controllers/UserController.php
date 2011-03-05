@@ -23,6 +23,7 @@ class UserController extends Zend_Controller_Action {
         $this->view->user = $this->_user;
         $this->view->upcoming = Model_Session::getUpcoming($this->_user);
         $this->view->previous = Model_Session::getPrevious($this->_user, 2);
+        $this->view->fitness = $this->_user->FitResults;
     }
 
     public function changePasswordAction()
@@ -129,21 +130,14 @@ class UserController extends Zend_Controller_Action {
         $calendar = new SZend_Calendar(array(), "$month $year");
         $calendar->addEvents('doctrine',array('collection'=>$diaryEvents), array('dateField' => 'dateField', 'title' => 'Food &amp; Exercise Diary'));
         $calendar->addEvents('doctrine',array('collection'=>$sessionEvents), array('dateField' => 'datetime', 'title' => 'PT Session'));
-//        $this->view->calHeader = $calendar->getCalendarHeaderDataArray(
-//                        'user', //controller
-//                        'calendar' //action
-//                );
         $this->view->calendar = $calendar;
-
         $this->view->lastTouched = false;
-
         $lastDiaryEvent = $diaryEvents->getLast();
-
-        if (       $lastDiaryEvent->breakfast != null
-                || $lastDiaryEvent->lunch != null
-                || $lastDiaryEvent->dinner != null
-                || $lastDiaryEvent->snacks != null
-                || $lastDiaryEvent->exercise != null) {
+        if (   $lastDiaryEvent->breakfast != null
+            || $lastDiaryEvent->lunch != null
+            || $lastDiaryEvent->dinner != null
+            || $lastDiaryEvent->snacks != null
+            || $lastDiaryEvent->exercise != null) {
             $this->view->lastTouched = true;
             $form = new Zend_Form();
             $form->setAction('/user/send-mail');

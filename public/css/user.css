@@ -1,0 +1,15 @@
+ul li {
+    list-style: none outside none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#cp-session-home > li > ul > li {
+    padding-left: 20px;
+}

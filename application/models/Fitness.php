@@ -12,5 +12,5 @@
  */
 class Model_Fitness extends Model_Base_Fitness
 {
-
+    
 }

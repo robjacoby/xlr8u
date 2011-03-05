@@ -48,7 +48,7 @@ abstract class Model_Base_Fitness extends Doctrine_Record
              'type' => 'string',
              'length' => '',
              ));
-        $this->hasColumn('90hang', 'string', null, array(
+        $this->hasColumn('ninetyhang', 'string', null, array(
              'type' => 'string',
              'length' => '',
              ));
@@ -56,11 +56,11 @@ abstract class Model_Base_Fitness extends Doctrine_Record
              'type' => 'string',
              'length' => '',
              ));
-        $this->hasColumn('3minstep', 'string', null, array(
+        $this->hasColumn('threeminstep', 'string', null, array(
              'type' => 'string',
              'length' => '',
              ));
-        $this->hasColumn('12minrun', 'string', null, array(
+        $this->hasColumn('twelveminrun', 'string', null, array(
              'type' => 'string',
              'length' => '',
              ));

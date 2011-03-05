@@ -1,0 +1,27 @@
+<?php
+if ($this->invoiceid !== null){
+    $mi = new Model_Invoice();
+    $invoiceid = $this->invoiceid;
+    $invoice = $mi->findOneById($invoiceid);
+    $currentDate = new Zend_Date();
+    $dueDate = new Zend_Date($invoice->duedate);
+}
+    $zendDate = new Zend_Date($this->datetime);
+    $date = $zendDate->get(Zend_Date::DATE_FULL);
+    $time = $zendDate->get(Zend_Date::TIME_SHORT);
+?>
+<li>
+    <a href="/user/session?id=<?=$this->id?>"><?=$this->sessiontype;?> for <?=$this->length;?> on <?=$date;?> at <?=$time;?></a>
+    <?php if ($this->invoiceid !== null): ?>
+        <a href="/user/view-invoice?id=<?=$this->id?>">View Invoice</a>
+        <?php if ($invoice->paymentdate === null): ?>
+            <?php if ($currentDate->get() < $dueDate->get()): ?>
+            <span class="outstanding">(Outstanding)</span>
+            <?php else: ?>
+            <span class="overdue">(Overdue)</span>
+            <?php endif; ?>
+        <?php else: ?>
+            <span class="paid">(PAID)</span>
+        <?php endif; ?>
+    <?php endif; ?>
+</li>

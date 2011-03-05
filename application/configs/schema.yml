@@ -121,10 +121,10 @@ Fitness:
     beep: string()
     toetaps: string()
     pushups: string()
-    90hang: string()
+    ninetyhang: string()
     plank: string()
-    3minstep: string()
-    12minrun: string()
+    threeminstep: string()
+    twelveminrun: string()
     waistcm: string()
     datetime: timestamp
   relations:
