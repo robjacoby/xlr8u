@@ -189,3 +189,33 @@ ul#monthCarousel li#selected-month {
 table#calendarTable td.nonmonth {
     background-color: lightcyan;
 }
+
+.events, .dayNum {
+    display: table-cell;
+}
+
+.days td {
+    vertical-align: top;
+}
+
+.dayNum {
+    padding-right: 5px;
+}
+
+.events {
+    vertical-align: top;
+    width: 90%;
+}
+
+.event {
+    padding: 1px;
+    margin-bottom: 5px;
+}
+
+.diary {
+    color: blueviolet;
+}
+
+.pt {
+    color: darkgreen;
+}

@@ -15,6 +15,11 @@ root {
     display: block;
 }
 
+* {
+    padding: 0 0;
+    margin: 0 0;
+}
+
 body {
     width: 960px;
     margin: 0 auto;
@@ -34,6 +39,31 @@ a {
 nav {
     width: 230px;
     display: inline-block;
+    vertical-align: top;
+}
+
+.navigation {
+    padding-left: 15px;
+}
+
+.navigation ul, .navigation li {
+    list-style: none inside none;
+}
+
+.navigation ul li a
+{
+    text-decoration: none;
+}
+
+.navigation ul li a:hover
+{
+    background: #CCC;
+}
+
+.navigation > li {
+    padding: 5px 0;
+    border-bottom: 1px solid;
+    width: 70%;
 }
 
 #content {

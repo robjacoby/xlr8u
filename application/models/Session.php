@@ -40,4 +40,41 @@ class Model_Session extends Model_Base_Session
             return false;
         }
     }
+
+    public static function getUpcoming(Model_User $user, $limit = null)
+    {
+        $now = date('Y-m-d');
+        $query = Doctrine_Query::create();
+        $query->from('Model_Session s')
+              ->where("datetime >= CAST('$now' as DATETIME)")
+              ->andWhere("userid = $user->id");
+
+        if ($limit !== null) {
+            if (!is_int($limit)){
+                $limit = intval($limit);
+            }
+            $query->limit($limit);
+        }
+
+        return $query->execute();
+    }
+
+    public static function getPrevious(Model_User $user, $limit = null)
+    {
+        $now = date('Y-m-d');
+        $query = Doctrine_Query::create();
+        $query->from('Model_Session s')
+              ->where("datetime < CAST('$now' as DATETIME)")
+              ->andWhere("userid = $user->id")
+              ->orderBy('datetime DESC');
+
+        if ($limit !== null) {
+            if (!is_int($limit)){
+                $limit = intval($limit);
+            }
+            $query->limit($limit);
+        }
+
+        return $query->execute();
+    }
 }

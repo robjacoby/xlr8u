@@ -3,6 +3,11 @@
 class IndexController extends Zend_Controller_Action
 {
 
+    public function init(){
+        if (Zend_Auth::getInstance()->hasIdentity())
+            $this->view->navigation()->setRole(Zend_Auth::getInstance()->getIdentity()->getRole());
+    }
+
     public function indexAction()
     {
         

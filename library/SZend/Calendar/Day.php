@@ -12,6 +12,8 @@ class SZend_Calendar_Day extends Zend_Date
 	 * @var SZend_Calendar
 	 */
 	protected $_calendar;
+
+        protected $_class;
 	
 	/**
 	 * Generates the standard date object, could be a unix timestamp, localized date,
@@ -28,9 +30,10 @@ class SZend_Calendar_Day extends Zend_Date
 	 * @return Zend_Date
 	 * @throws Zend_Date_Exception
 	 */
-	public function __construct($date = null, $part = null, $locale = null)
+	public function __construct($date = null, $part = null, $locale = null, $class = null)
 	{
 		parent::__construct($date, $part, $locale);
+                $this->_class = $class;
 	}
 	
 	/**
@@ -60,6 +63,11 @@ class SZend_Calendar_Day extends Zend_Date
 	{
 		return array();
 	}
+
+        public function getClass()
+        {
+            return $this->_class;
+        }
 	
 	/**
 	 * Determines if date is the current day

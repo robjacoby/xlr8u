@@ -1,48 +1,17 @@
 <?php
 $user = $this->user;
-$currentDate = new Zend_Date();
-$this->navigation()->setRole($user->getRole());
+
 ?>
 <h1>User Control Panel</h1>
-<ul>
-    <li><?=$user->name.PHP_EOL;?>
+<ul id="cp-session-home">
+    <li><h2>Upcoming Sessions</h2>
         <ul>
-            <?php foreach($user->Sessions as $session):
-                $dueDate = new Zend_Date($session->Invoice->duedate);?>
-            <li>
-                <a href="/user/session?id=<?=$session->id?>"><?=$session->sessiontype;?> for <?=$session->length;?> on <?=$session->datetime;?></a>
-                <?php if ($session->invoiceid !== null): ?>
-                    <a href="/user/view-invoice?id=<?=$session->id?>">View Invoice</a>
-                    <?php if ($session->Invoice->paymentdate === null): ?>
-                        <?php if ($currentDate->get() < $dueDate->get()): ?>
-                        <span class="outstanding">(Outstanding)</span>
-                        <?php else: ?>
-                        <span class="overdue">(Overdue)</span>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <span class="paid">(PAID)</span>
-                    <?php endif; ?>
-                <?php endif; ?>
-            </li>
-            <?php endforeach; ?>
+            <?= $this->partialLoop('partials/_sessionLoopUser.phtml', $this->upcoming); ?>
+        </ul>
+    </li>
+    <li><h2>Previous Sessions</h2>
+        <ul>
+            <?= $this->partialLoop('partials/_sessionLoopUser.phtml', $this->previous); ?>
         </ul>
     </li>
 </ul>
-<?php
-#$this->dojo()->addStyleSheetModule('dijit.themes.tundra');
-#echo $this->dojoCalendar('calendar','',array(), array('dayWidth'=>'abbr'));
-
-echo $this->calendar;
-?>
-
-<?php if($this->lastTouched): ?>
-<p>It appears that you have edited your last Food &amp; Exercise Diary entry.
-    Would you like to submit it to Rob Brehaut now?</p>
-<?=$this->form;?>
-<?php endif; ?>
-
-<?php if($this->message): ?>
-<h2><?= $this->message; ?></h2>
-<?php endif; ?>
-<a href="/user/change-password">Change Password</a>
-<a href="/login/logout">Logout</a>

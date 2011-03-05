@@ -169,33 +169,33 @@ class My_Service_Calendar
 		
 		$calDayNum = 1; //first day
 		$calMonthDays = array();
-		for ($i = 0; $i < $this->getFocusMonthNumWeeks(); $i++) {
-			$weekArr = array();
-			for ($j = 0; $j < 7; $j++) {
-				$dayArr = array();
-				$cellNum = ($i * 7 + $j);
-				$dayArr['class'] = "";
-				//css class cals
-				if (($nowDate == $focusDate) && ($today == $calDayNum) && ($cellNum >= $this->getFocusMonthFirstDayOfWeek())) { //today
-					$dayArr['class'] = " today";
-				}
-				if ($j == 0) { //first day of week
-					$class .= ' first';
-				} elseif ($j == 6) { //last day of week
-					$dayArr['class'] .= ' last';
-				}
-				if ($i == ($this->getFocusMonthNumWeeks() - 1)) { //last week of days
-					$dayArr['class'] .= ' bottom';
-				}
-				//build the days of the month cell data
-				$firstDayOfWeek = $this->getFocusMonthFirstDayOfWeek();
-				if ($cellNum >= $firstDayOfWeek && $cellNum < ($this->getFocusMonthNumDays() + $firstDayOfWeek)) { //day in cell
-					$dayArr['num'] = Zend_Locale_Format::toNumber($calDayNum);
-					$calDayNum++;
-				}
-				array_push($weekArr, $dayArr);
-			}
-			array_push($calMonthDays, $weekArr);
+                for ($i = 0; $i < $this->getFocusMonthNumWeeks(); $i++) {
+                    $weekArr = array();
+                    for ($j = 0; $j < 7; $j++) {
+                        $dayArr = array();
+                        $cellNum = ($i * 7 + $j);
+                        $dayArr['class'] = "";
+                        //css class cals
+                        if (($nowDate == $focusDate) && ($today == $calDayNum) && ($cellNum >= $this->getFocusMonthFirstDayOfWeek())) { //today
+                            $dayArr['class'] = " today";
+                        }
+                        if ($j == 0) { //first day of week
+                            $dayArr['class'] .= ' first';
+                        } elseif ($j == 6) { //last day of week
+                            $dayArr['class'] .= ' last';
+                        }
+//                        if ($i == ($this->getFocusMonthNumWeeks() - 1)) { //last week of days
+//                            $dayArr['class'] .= ' bottom';
+//                        }
+                        //build the days of the month cell data
+                        $firstDayOfWeek = $this->getFocusMonthFirstDayOfWeek();
+                        if ($cellNum >= $firstDayOfWeek && $cellNum < ($this->getFocusMonthNumDays() + $firstDayOfWeek)) { //day in cell
+                                $dayArr['num'] = Zend_Locale_Format::toNumber($calDayNum);
+                                $calDayNum++;
+                        }
+                        array_push($weekArr, $dayArr);
+                    }
+                    array_push($calMonthDays, $weekArr);
 		}
 		return $calMonthDays;
 	}

@@ -145,6 +145,10 @@ Diary:
     dinner: string()
     snacks: string()
     exercise: string()
+    active:
+      type: boolean
+      default: true
+      notnull: true
   relations:
     User:
       foreign: id

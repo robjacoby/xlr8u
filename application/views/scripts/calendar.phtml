@@ -16,10 +16,7 @@ $(document).ready(function(){
         <div id="scrollableWrapper">
             <ul id="monthCarousel" class="jcarousel-skin-custom">
             <?php
-            $calHeader = $this->calendar->getCalendarHeaderDataArray(
-                        'user', //controller
-                        'index' //action
-                );
+            $calHeader = $this->calendar->calHeader;
             foreach ($calHeader as $arr) : ?>
                 <li id="<?php echo $arr['id']; ?>">
                     <a href="<?php echo $this->url($arr['url']); ?>"><?php echo $arr['text']; ?></a>
@@ -38,44 +35,44 @@ $(document).ready(function(){
             <?php foreach ($this->calendar->weekList as $weekNum => $weekArr) : ?>
             <tr class="days">
             <?php foreach ($weekArr as $dayArr) : ?>
-                <?php $class = ""; ?>
-                <?php if ($dayArr['day']->isToday()) $class .= "today"; ?>
-                <?php if ($dayArr['day']->get(Zend_Date::WEEKDAY_DIGIT) == 6) $class .= " last"; ?>
-                <?php if ($dayArr['day']->get(Zend_Date::MONTH) != $this->calendar->get(Zend_Date::MONTH)) {
-                          $class .= ' nonmonth';
-                      }
-                ?>
+                <?php $class = $dayArr['day']->getClass(); ?>
                 <td <?php if ($class != "") echo "class=\"$class\""; ?>>
                 <?php if (isset($dayArr['day'])) : ?>
                     <span class="dayNum"><?php echo $dayArr['day']; ?></span>
                 <?php endif; ?>
                 <?php
                     $maxEvents = 4;
-                    // Grab info for day
 
+                    // Grab info for day
                     $events = null;
                     if (!empty($dayArr['events'])) {
-                        foreach($dayArr['events'] as $dayEvent){
-                            $events[] = $this->calendar->getEvent($dayEvent['id']);
+                        for ($i = 0; $i < $maxEvents; $i++){
+                            if (isset($dayArr['events'][$i])){
+                                $dayEvent = $dayArr['events'][$i];
+                                $events[] = $this->calendar->getEvent($dayEvent['id']);
+                            }
                         }
-                        
-                        #unset($dayArr['events'][key($dayArr['events'])]);
                     }
-
-                    #if (empty($dayInfo['events'])) unset($dayArr);
                 ?>
                 <?php if ($events) : ?>
-                    <?php foreach($events as $event): ?>
-                    <span class="event">
-                        <?php if ($event->title == 'PT Session'): ?>
-                        <a href="/user/session/id/<?=$event->id;?>">
-                        <?php else: ?>
-                        <a href="/user/diary/id/<?=$event->id;?>">
-                        <?php endif; ?>
-                            <?=$event->title;?>
-                        </a>
+                    <span class="events">
+                        <?php foreach($events as $event): ?>
+                        <div class="event">
+                            <?php
+                            if ($event->title == 'PT Session'){
+                                $class = 'pt';
+                                $action = 'session';
+                            } else {
+                                $class = 'diary';
+                                $action = 'diary';
+                            }
+                            ?>
+                            <a class="<?=$class;?>" href="/user/<?=$action;?>/id/<?=$event->id;?>">
+                                <?=$event->title;?>
+                            </a>
+                        </div>
+                        <?php endforeach; ?>
                     </span>
-                    <?php endforeach; ?>
                 <?php endif;?>
                 </td>
                 <?php endforeach; ?>

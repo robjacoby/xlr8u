@@ -14,42 +14,15 @@ class UserController extends Zend_Controller_Action {
     
     public function  init() {
         $this->_user = Zend_Auth::getInstance()->getIdentity();
+        $this->view->navigation()->setRole($this->_user->getRole());
+        $this->view->headLink()->appendStylesheet('/css/user.css');
     }
-
 
     public function indexAction()
     {
-        $month = $this->_getParam('month', date('F'));
-        $year = $this->_getParam('year', date('Y'));
-
-        $this->view->user = Zend_Auth::getInstance()->getIdentity();
-        $diaryEvents = Model_Diary::getEvents($this->view->user);
-        $sessionEvents = Model_Session::getEvents($this->view->user);
-        $calendar = new SZend_Calendar(array(), "$month $year");
-        $calendar->addEvents('doctrine',array('collection'=>$diaryEvents), array('dateField' => 'dateField', 'title' => 'Food &amp; Exercise Diary'));
-        $calendar->addEvents('doctrine',array('collection'=>$sessionEvents), array('dateField' => 'datetime', 'title' => 'PT Session'));
-        $this->view->calHeader = $calendar->getCalendarHeaderDataArray(
-                        'calendar', //controller
-                        'view' //action
-                );
-        $this->view->calendar = $calendar;
-
-        $this->view->lastTouched = false;
-
-        $lastDiaryEvent = $diaryEvents->getLast();
-
-        if (       $lastDiaryEvent->breakfast != null
-                || $lastDiaryEvent->lunch != null
-                || $lastDiaryEvent->dinner != null
-                || $lastDiaryEvent->snacks != null
-                || $lastDiaryEvent->exercise != null) {
-            $this->view->lastTouched = true;
-            $form = new Zend_Form();
-            $form->setAction('/user/send-mail');
-            $form->setMethod('post');
-            $form->addElement(new Zend_Form_Element_Submit('submit', 'Send Email'));
-            $this->view->form = $form;
-        }
+        $this->view->user = $this->_user;
+        $this->view->upcoming = Model_Session::getUpcoming($this->_user);
+        $this->view->previous = Model_Session::getPrevious($this->_user, 2);
     }
 
     public function changePasswordAction()
@@ -143,6 +116,40 @@ class UserController extends Zend_Controller_Action {
 
             echo "Mail Sent Successfully!";
             $this->_redirect('/user/');
+        }
+    }
+
+    public function calendarAction() {
+        $month = $this->_getParam('month', date('F'));
+        $year = $this->_getParam('year', date('Y'));
+
+        $this->view->user = Zend_Auth::getInstance()->getIdentity();
+        $diaryEvents = Model_Diary::getEvents($this->view->user);
+        $sessionEvents = Model_Session::getEvents($this->view->user);
+        $calendar = new SZend_Calendar(array(), "$month $year");
+        $calendar->addEvents('doctrine',array('collection'=>$diaryEvents), array('dateField' => 'dateField', 'title' => 'Food &amp; Exercise Diary'));
+        $calendar->addEvents('doctrine',array('collection'=>$sessionEvents), array('dateField' => 'datetime', 'title' => 'PT Session'));
+//        $this->view->calHeader = $calendar->getCalendarHeaderDataArray(
+//                        'user', //controller
+//                        'calendar' //action
+//                );
+        $this->view->calendar = $calendar;
+
+        $this->view->lastTouched = false;
+
+        $lastDiaryEvent = $diaryEvents->getLast();
+
+        if (       $lastDiaryEvent->breakfast != null
+                || $lastDiaryEvent->lunch != null
+                || $lastDiaryEvent->dinner != null
+                || $lastDiaryEvent->snacks != null
+                || $lastDiaryEvent->exercise != null) {
+            $this->view->lastTouched = true;
+            $form = new Zend_Form();
+            $form->setAction('/user/send-mail');
+            $form->setMethod('post');
+            $form->addElement(new Zend_Form_Element_Submit('submit', 'Send Email'));
+            $this->view->form = $form;
         }
     }
 }

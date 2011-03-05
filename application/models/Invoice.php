@@ -12,6 +12,7 @@
  */
 class Model_Invoice extends Model_Base_Invoice
 {
+
     public function findOneById($id)
     {
         $invoice = Doctrine_Core::getTable('Model_Invoice')->findOneById($id);

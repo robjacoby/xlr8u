@@ -33,7 +33,11 @@ class Model_Diary extends Model_Base_Diary
      */
     public static function getEvents(Model_User $user)
     {
-        $events = Doctrine_Core::getTable('Model_Diary')->findByUserid($user->id);
+        #$events = Doctrine_Core::getTable('Model_Diary')->findByUserid($user->id);
+        $events = Doctrine_Query::create()->from('Model_Diary d')
+                                         ->where('userid = ?', $user->id)
+                                         ->andWhere('active = ?', true)
+                                         ->execute();
         if ($events){
             return $events;
         } else {
