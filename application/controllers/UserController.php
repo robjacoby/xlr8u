@@ -89,7 +89,7 @@ class UserController extends Zend_Controller_Action {
             $diary->snacks = $this->_getParam('snacks');
             $diary->exercise = $this->_getParam('exercise');
             $diary->save();
-            $this->_redirect('/user/');
+            $this->_redirect('/user/calendar/');
         } else if ($this->getRequest()->isGet()) {
             $diaryid = $this->_getParam('id');
             $diary = Model_Diary::getDiary($diaryid);
@@ -108,14 +108,65 @@ class UserController extends Zend_Controller_Action {
 
     public function sendMailAction()
     {
-        if ($this->getRequest()->isPost()) {
-            $mail = new Zend_Mail();
-            $mail->addTo($this->_user->email, $this->_user->name);
-            $mail->setBodyText('This is a test email!');
-            $mail->setSubject('Test Email!!');
-            $mail->send();
+        #$this->_helper->layout()->disableLayout();
+        $grid = $this->grid('fitness');
+        $select = Doctrine_Query::create()->select('d.dateField as Date, d.breakfast, d.lunch, d.dinner, d.snacks, d.exercise')
+                                          ->from('Model_Diary d')
+                                          ->where('userid = ?', $this->_user->id)
+                                          ->andWhere('active = ?', true);
+        $source = new Bvb_Grid_Source_Doctrine($select);
+        $grid->setSource($source);
+        $grid->updateColumn('Date', array(
+            'format'    => array(
+                'date',
+                array(
+                    'locale' => 'en_AU',
+                    'date_format'   => 'D jS M Y',
+                    'format_type'   => 'php'
+                )
+            ),
+            'class'     => 'date'
+        ));
+        $grid->updateColumn('breakfast', array(
+            'class' => 'breakfast'
+        ));
+        $grid->updateColumn('lunch', array(
+            'class' => 'lunch'
+        ));
+        $grid->updateColumn('dinner', array(
+            'class' => 'dinner'
+        ));
+        $grid->updateColumn('snacks', array(
+            'class' => 'snacks'
+        ));
+        $grid->updateColumn('exercise', array(
+            'class' => 'exercise'
+        ));
 
-            echo "Mail Sent Successfully!";
+        $grid->setNoOrder(true);
+        $grid->setNoFilters(true);
+        $myGrid = $grid->deploy();
+        
+        $myView = new Zend_View();
+        $myView->addScriptPath(APPLICATION_PATH . '/views/scripts/templates/');
+        $myView->grid = $myGrid;
+        $myView->title = 'Food &amp; Exercise Diary for ' . $this->_user->name;
+        $dateRange = Model_Diary::getDateRange($this->_user);
+        $myView->subtitle = $dateRange;
+        
+        $html_body = $myView->render('fitnessDiary.phtml');
+        
+        if ($this->getRequest()->isPost()) {
+            $admin = Model_User::getAdmin();
+            $mail = new Zend_Mail();
+            $mail->addTo($admin->email, $admin->name);
+            $mail->addCc($this->_user->email, $this->_user->name);
+            $mail->setSubject('Food & Exercise Diary for ' . $this->_user->name);
+            $mail->setBodyHtml($html_body, 'utf8', Zend_Mime::TYPE_HTML);
+            
+            $transport = new Zend_Mail_Transport_Smtp('mail.netspace.net.au');
+            $mail->send($transport);
+            
             $this->_redirect('/user/');
         }
     }
@@ -145,6 +196,24 @@ class UserController extends Zend_Controller_Action {
             $form->addElement(new Zend_Form_Element_Submit('submit', 'Send Email'));
             $this->view->form = $form;
         }
+    }
+
+    /**
+     * Simplify the datagrid creation process
+     * @return Bvb_Grid_Deploy_Table
+     */
+    public function grid ($id = '')
+    {
+        $view = new Zend_View();
+        $view->setEncoding('UTF-8');
+        #$config = new Zend_Config_Ini('./application/grids/grid.ini', 'production');
+        $grid = Bvb_Grid::factory('table', null, $id);
+        $grid->setEscapeOutput(false);
+        $grid->setExport(array());
+        $grid->setView($view);
+        #$grid->saveParamsInSession(true);
+        #$grid->setCache(array('use' => array('form'=>false,'db'=>false), 'instance' => Zend_Registry::get('cache'), 'tag' => 'grid'));
+        return $grid;
     }
 }
 ?>

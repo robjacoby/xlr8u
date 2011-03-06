@@ -23,7 +23,7 @@ Model_Session:
 Model_User:
   User_1:
     name: Rob Brehaut
-    email: rob@xlr8yourfitness.com.au
+    email: rob@accelerateyourfitness.com
     phone: '0421029021'
     username: admin
     password: 1749d52c88b0faeb8e214f239fec780f2a61fefb

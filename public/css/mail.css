@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+#wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+table, tr, td, th {
+    border: 1px solid black;
+}
+
+td {
+    padding: 2px;
+}
+
+th {
+    padding: 5px 0;
+    background-color: #aaaaaa;
+    color: #0000ff;
+}
+
+.alt {
+    background-color: #eeeeee;
+}
+
+.breakfast, .lunch, .dinner, .snacks, .exercise {
+    width: 165px;
+}
+
+.date {
+    width: 100px;
+    font-size: 11px;
+}

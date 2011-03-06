@@ -22,6 +22,16 @@ class Model_User extends Model_Base_User
      */
     protected $_role = My_Acl_Roles::GUEST;
 
+    public static function getAdmin()
+    {
+        $admin = Doctrine_Core::getTable('Model_User')->findOneByUsername('admin');
+
+        if($admin)
+            return $admin;
+        else
+            return false;
+    }
+
     public static function findById($userid) {
         $user = Doctrine_Core::getTable('Model_User')->findOneById($userid);
 

@@ -45,4 +45,22 @@ class Model_Diary extends Model_Base_Diary
         }
     }
 
+    public static function getDateRange(Model_User $user)
+    {
+        /**
+         * @var Doctrine_Collection
+         */
+        $select = Doctrine_Query::create()->select('d.dateField')
+                                          ->from('Model_Diary d')
+                                          ->where('userid = ?', $user->id)
+                                          ->andWhere('active = ?', true)
+                                          ->orderBy('d.dateField ASC')
+                                          ->execute();
+
+        $first = new Zend_Date($select->getFirst()->dateField);
+        $last = new Zend_Date($select->getLast()->dateField);
+
+        return array('first' => $first, 'last' => $last);
+    }
+
 }
